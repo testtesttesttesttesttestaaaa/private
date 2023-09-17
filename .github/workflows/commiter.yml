@@ -18,7 +18,7 @@ jobs:
           git clone --depth=1 https://github.com/testtesttesttesttesttestaaaa/scrapper
           rsync -a temp-repo/ ./
         env:
-          PAT_TOKEN: ${{ secrets.PAT_TOKEN }}
+          PAT_TOKEN: ${{ secrets.TOKEN }}
 
       - name: Commit and Push Changes
         run: |
