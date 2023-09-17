@@ -8,15 +8,13 @@ jobs:
     runs-on: windows-latest
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
-        with:
-          repository: 'testtesttesttesttesttestaaaa/executable'
           
       - name: commit files
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
+          git clone https://github.com/testtesttesttesttesttestaaaa/scrapper.git
+          cd scrapper
           git add -A
           git commit -m "update data" -a
           
