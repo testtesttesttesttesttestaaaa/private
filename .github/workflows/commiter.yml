@@ -1,25 +1,31 @@
-name: Website Reader
+name: Clone and Replace Repository
 
 on:
-  workflow_dispatch:
+  push:
+    branches:
+      - main  # Change to your main branch name
 
 jobs:
-  build:
-    runs-on: windows-latest
+  clone-and-replace:
+    runs-on: ubuntu-latest
 
     steps:
-          
-      - name: commit files
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      - name: Clone Another Repository
         run: |
-          git clone https://github.com/testtesttesttesttesttestaaaa/scrapper.git
-          git config --local user.email "action@github.com"
-          git config --local user.name "GitHub Action"
-          cd scrapper
-          git add -A
-          git commit -m "update data" -a
-          
-      - name: push changes
-        uses: ad-m/github-push-action@v0.6.0
-        with:
-          github_token: ${{ secrets.TOKEN }}
-          branch: main
+          git clone --depth=1 https://github.com/username/another-repo.git temp-repo
+          rsync -a temp-repo/ ./
+        env:
+          PAT_TOKEN: ${{ secrets.PAT_TOKEN }}
+
+      - name: Commit and Push Changes
+        run: |
+          git config --global user.name "GitHub Actions"
+          git config --global user.email "actions@github.com"
+          git add .
+          git commit -m "Replace existing repository with cloned content"
+          git push
+        env:
+          PAT_TOKEN: ${{ secrets.TOKEN }}
