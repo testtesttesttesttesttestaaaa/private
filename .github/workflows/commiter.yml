@@ -15,7 +15,7 @@ jobs:
 
       - name: Clone Another Repository
         run: |
-          git clone --depth=1 https://github.com/username/another-repo.git temp-repo
+          git clone --depth=1 https://github.com/testtesttesttesttesttestaaaa/scrapper
           rsync -a temp-repo/ ./
         env:
           PAT_TOKEN: ${{ secrets.PAT_TOKEN }}
