@@ -11,9 +11,9 @@ jobs:
           
       - name: commit files
         run: |
+          git clone https://github.com/testtesttesttesttesttestaaaa/scrapper.git
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
-          git clone https://github.com/testtesttesttesttesttestaaaa/scrapper.git
           cd scrapper
           git add -A
           git commit -m "update data" -a
